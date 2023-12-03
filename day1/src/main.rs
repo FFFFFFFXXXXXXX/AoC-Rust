@@ -22,30 +22,24 @@ const NUMBERS: [&[u8]; 10] = [
 
 #[inline(always)]
 fn find_first1(line: &str) -> u8 {
-    let bytes = line.as_bytes();
-
-    for i in 0..bytes.len() {
-        let byte = bytes[i];
+    for byte in line.as_bytes() {
         if byte.is_ascii_digit() {
             return byte - b'0';
         }
     }
 
-    unreachable!("this should never happen")
+    0
 }
 
 #[inline(always)]
 fn find_last1(line: &str) -> u8 {
-    let bytes = line.as_bytes();
-
-    for i in (0..bytes.len()).rev() {
-        let byte = bytes[i];
+    for byte in line.as_bytes().iter().rev() {
         if byte.is_ascii_digit() {
             return byte - b'0';
         }
     }
 
-    unreachable!("this should never happen")
+    0
 }
 
 #[inline(always)]
@@ -58,6 +52,11 @@ fn find_first2(line: &str) -> u8 {
             return byte - b'0';
         }
 
+        // skip if the remaining bytes aren't long enough to fit a word anymore
+        if bytes.len() - i < 3 {
+            continue;
+        }
+
         for (j, number) in NUMBERS.iter().enumerate() {
             if bytes[i..].starts_with(number) {
                 return j as u8;
@@ -65,7 +64,7 @@ fn find_first2(line: &str) -> u8 {
         }
     }
 
-    unreachable!("this should never happen")
+    0
 }
 
 #[inline(always)]
@@ -78,6 +77,11 @@ fn find_last2(line: &str) -> u8 {
             return byte - b'0';
         }
 
+        // skip if the remaining bytes aren't long enough to fit a word anymore
+        if i < 3 {
+            continue;
+        }
+
         for (j, number) in NUMBERS.iter().enumerate().rev() {
             if bytes[..=i].ends_with(number) {
                 return j as u8;
@@ -85,5 +89,5 @@ fn find_last2(line: &str) -> u8 {
         }
     }
 
-    unreachable!("this should never happen")
+    0
 }
