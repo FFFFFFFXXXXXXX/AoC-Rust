@@ -13,7 +13,7 @@ fn main() {
         .reduce(|(a1, a2), (b1, b2)| (a1 + b1, a2 + b2))
         .unwrap();
 
-    println!("Sum 1: {sum1}, Sum 2: {sum2}");
+    println!("{sum1}\n{sum2}");
 }
 
 const NUMBERS: [&[u8]; 10] = [
