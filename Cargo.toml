@@ -6,7 +6,4 @@ members = ["day*"]
 authors = ["FX"]
 
 [profile.release]
-opt-level = 3
-strip = "debuginfo"
-lto = "fat"
-panic = "abort"
+debug = true # for flamegraph in release mode
