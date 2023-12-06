@@ -51,6 +51,7 @@ fn main() -> Result<()> {
     Ok(())
 }
 
+#[derive(Debug)]
 struct Record {
     max_time: f64,
     distance: f64,
@@ -62,11 +63,9 @@ fn margin_of_error(record: &Record) -> u64 {
     let left_limit = 0.5 * (record.max_time - tmp);
     let right_limit = 0.5 * (record.max_time + tmp);
 
-    let mut result = (right_limit - left_limit).round() as u64;
-
-    if left_limit.ceil() == left_limit || right_limit.floor() == right_limit {
-        result -= 1;
+    if right_limit.floor() == right_limit {
+        right_limit.floor() as u64 - left_limit.floor() as u64 - 1
+    } else {
+        right_limit.floor() as u64 - left_limit.floor() as u64
     }
-
-    result
 }
