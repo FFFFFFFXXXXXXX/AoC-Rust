@@ -19,10 +19,7 @@ fn main() -> Result<()> {
         })
         .collect();
 
-    let result1: u64 = records
-        .iter()
-        .map(|record| margin_of_error(record))
-        .product();
+    let result1: u64 = records.iter().map(margin_of_error).product();
 
     // part 2
     let max_time = times

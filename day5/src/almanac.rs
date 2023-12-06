@@ -46,13 +46,6 @@ impl Mapping {
             None
         }
     }
-
-    fn reverse_mapping(&self) -> Self {
-        Self {
-            source: self.source.start + self.shift..self.source.end + self.shift,
-            shift: -self.shift,
-        }
-    }
 }
 
 impl FromStr for Mapping {
