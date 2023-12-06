@@ -87,7 +87,7 @@ impl Display for Bitset {
 fn parse_int(str: &str) -> u8 {
     let bytes = str.as_bytes();
     // bytes[0] might be a space => saturation_sub prevents underflow and returns 0 instead
-    (bytes[0].saturating_sub(b'0')) * 10 + (bytes[1] - b'0')
+    bytes[0].saturating_sub(b'0') * 10 + (bytes[1] - b'0')
 }
 
 #[inline(always)]

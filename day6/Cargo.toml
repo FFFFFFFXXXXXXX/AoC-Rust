@@ -1,0 +1,5 @@
+[package]
+name = "day6"
+edition.workspace = true
+version.workspace = true
+authors.workspace = true
